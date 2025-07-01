@@ -1,7 +1,7 @@
 import requests
 from datetime import datetime
 
-WEBHOOK_URL = "https://discord.com/api/webhooks/여기에_붙여넣기"
+WEBHOOK_URL = "https://discordapp.com/api/webhooks/1389449945106481263/rmj_gSePiFBqQLDE-wNILCwprMAC2kpG9ovvLSswDanIymGupr0M5lIgprMjqkPJRSE6"
 
 now = datetime.now()
 weekday = now.weekday()
