@@ -1,7 +1,8 @@
 import requests
+import os
 from datetime import datetime
 
-WEBHOOK_URL = "https://discordapp.com/api/webhooks/1389449945106481263/rmj_gSePiFBqQLDE-wNILCwprMAC2kpG9ovvLSswDanIymGupr0M5lIgprMjqkPJRSE6"
+WEBHOOK_URL = os.environ.get('WEBHOOK_URL')
 
 now = datetime.now()
 weekday = now.weekday()
