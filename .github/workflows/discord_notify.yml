@@ -18,14 +18,13 @@ jobs:
       - name: Install requests
         run: pip install requests
 
-      - name: Send Discord Notification
-        env:
-          WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK }}
+      - name: Create Python script
         run: |
-          python -c 'import requests
+          cat <<EOF > notify.py
+import requests
 from datetime import datetime
 
-WEBHOOK_URL = "${{ env.WEBHOOK_URL }}"
+WEBHOOK_URL = "${{ secrets.DISCORD_WEBHOOK }}"
 weekday = datetime.now().weekday()
 
 message = {
@@ -39,4 +38,8 @@ if weekday < 5:
     else:
         print(f"전송 실패: {response.status_code} - {response.text}")
 else:
-    print("오늘은 평일이 아니므로 메시지를 보내지 않습니다.")'
+    print("오늘은 평일이 아니므로 메시지를 보내지 않습니다.")
+EOF
+
+      - name: Run Python script
+        run: python notify.py
