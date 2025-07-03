@@ -2,7 +2,7 @@ name: Discord Notify
 
 on:
   schedule:
-    - cron: '0 3 * * 1-5'  # 한국시간 오전 12시
+    - cron: '5 2 * * 1-5'  # 한국시간 오전 12시(실제 55분정도 딜레이 일어나므로 02:05분쯤 예약 실행)
   workflow_dispatch:
 
 jobs:
@@ -27,7 +27,7 @@ jobs:
           echo "weekday = datetime.now().weekday()" >> notify.py
           echo "" >> notify.py
           echo "message = {" >> notify.py
-          echo "    'content': '✨[자동화된 채팅입니다]✨\\n오늘 스터디 끝! 다들 맛점심하시길...\\n오늘 한 내용 내용공유방에 올리기!\\n ~정세영 올림~'" >> notify.py
+          echo "    'content': '✨[자동화된 채팅입니다]✨\\n오늘의 스터디를 슬슬 마무리할 시간입니다. 다들 맛점심하시길...\\n오늘 한 내용 내용공유방에 올리기!\\n ~정세영 올림~'" >> notify.py
           echo "}" >> notify.py
           echo "" >> notify.py
           echo "if weekday < 5:" >> notify.py
