@@ -1,43 +1,21 @@
-name: Discord Notify
-
-on:
-  schedule:
-    - cron: '5 2 * * 1-5'  # 한국시간 오전 12시(실제 55분정도 딜레이 일어나므로 02:05분쯤 예약 실행)
-  workflow_dispatch:
-
-jobs:
-  send-discord-message:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-
-      - name: Install requests
-        run: pip install requests
-
-      - name: Create Python script safely
-        run: |
-          echo "import requests" > notify.py
-          echo "from datetime import datetime" >> notify.py
-          echo "" >> notify.py
-          echo "WEBHOOK_URL = '${{ secrets.DISCORD_WEBHOOK }}'" >> notify.py
-          echo "weekday = datetime.now().weekday()" >> notify.py
-          echo "" >> notify.py
-          echo "message = {" >> notify.py
-          echo "    'content': '✨[자동화된 채팅입니다]✨\\n오늘의 스터디를 슬슬 마무리할 시간입니다. 다들 맛점심하시길...\\n오늘 한 내용 내용공유방에 올리기!\\n ~정세영 올림~'" >> notify.py
-          echo "}" >> notify.py
-          echo "" >> notify.py
-          echo "if weekday < 5:" >> notify.py
-          echo "    response = requests.post(WEBHOOK_URL, json=message)" >> notify.py
-          echo "    if response.status_code == 204:" >> notify.py
-          echo "        print('디스코드로 메시지 전송 성공')" >> notify.py
-          echo "    else:" >> notify.py
-          echo "        print(f'전송 실패: {response.status_code} - {response.text}')" >> notify.py
-          echo "else:" >> notify.py
-          echo "    print('오늘은 평일이 아니므로 메시지를 보내지 않습니다.')" >> notify.py
-
-      - name: Run Python script
-        run: python notify.py
+##import requests
+##from datetime import datetime
+##
+##WEBHOOK_URL = "https://discord.com/api/webhooks/여기에_붙여넣기"
+##
+##now = datetime.now()
+##weekday = now.weekday()
+##
+##message = {
+##    "content": "✨[자동화된 채팅입니다]✨\n{today_str} 스터디 끝! 다들 맛점심하시길... \n오늘 한 내용 내용공유방에 올리기!\n ~정세영 올림~"
+##}
+##
+###평일만
+##if weekday < 5:
+##    response = requests.post(WEBHOOK_URL, json=message)
+##    if response.status_code == 204:
+##        print("디스코드로 메시지 전송 성공")
+##    else:
+##        print(f"전송 실패: {response.status_code} - {response.text}")
+##else:
+##    print("오늘은 평일이 아니므로 메시지를 보내지 않습니다.")
